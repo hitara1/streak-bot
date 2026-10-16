@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: habit_streak_bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data
+    environment:
+      - DATABASE_URL=sqlite:////data/habit_streak.db
+
+  # Optional: PostgreSQL for production
+  # db:
+  #   image: postgres:15-alpine
+  #   container_name: habit_streak_db
+  #   restart: unless-stopped
+  #   environment:
+  #     POSTGRES_USER: habituser
+  #     POSTGRES_PASSWORD: habitpass
+  #     POSTGRES_DB: habitstreak
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+
+# volumes:
+#   postgres_data:

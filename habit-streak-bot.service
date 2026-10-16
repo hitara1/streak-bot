@@ -1,0 +1,16 @@
+[Unit]
+Description=Habit Streak Telegram Bot
+After=network.target
+
+[Service]
+Type=simple
+User=habitbot
+WorkingDirectory=/opt/habit_streak_bot
+Environment=PYTHONPATH=/opt/habit_streak_bot
+EnvironmentFile=/opt/habit_streak_bot/.env
+ExecStart=/opt/habit_streak_bot/venv/bin/python run.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
